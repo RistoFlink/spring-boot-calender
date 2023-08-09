@@ -13,22 +13,34 @@ import java.util.Optional;
 
 @Repository
 public class ContentCollectionRepository {
-    private final List<Content> content = new ArrayList<>();
+    private final List<Content> contentList = new ArrayList<>();
 
     public ContentCollectionRepository(){
 
     }
 
     public List<Content> findAll(){
-        return content;
+        return contentList;
     }
 
     public Optional<Content> findById(Integer id){
         //checks if the id of the content equals the id given and returns the first occurrence of it
         //returns an optional
-        return content.stream().filter(c -> c.id().equals(id)).findFirst();
+        return contentList.stream().filter(c -> c.id().equals(id)).findFirst();
     }
 
+    public void save(Content c) {
+        contentList.removeIf(con -> con.id().equals(c.id()));
+        contentList.add(c);
+    }
+    //returns true if an id match is found in the content list
+    public boolean existsById(Integer id) {
+        return contentList.stream().filter(c -> c.id().equals(id)).count() == 1;
+    }
+
+    public void deleteById(Integer id) {
+        contentList.removeIf(c -> c.id().equals(id));
+    }
     @PostConstruct
     private void init() {
         Content c = new Content( 1,
@@ -40,5 +52,6 @@ public class ContentCollectionRepository {
                 null,
                 ""
         );
+        contentList.add(c);
     }
 }
