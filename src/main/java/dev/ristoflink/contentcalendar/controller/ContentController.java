@@ -2,6 +2,7 @@ package dev.ristoflink.contentcalendar.controller;
 
 import dev.ristoflink.contentcalendar.model.Content;
 import dev.ristoflink.contentcalendar.repository.ContentCollectionRepository;
+import dev.ristoflink.contentcalendar.repository.ContentRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,9 @@ import java.util.Optional;
 @CrossOrigin
 public class ContentController {
     //in-memory representation of content - moving to a database later
-    private final ContentCollectionRepository repository;
+    private final ContentRepository repository;
 
-    public ContentController(ContentCollectionRepository repository) {
+    public ContentController(ContentRepository repository) {
         this.repository = repository;
     }
 
