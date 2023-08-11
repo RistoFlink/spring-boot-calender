@@ -1,6 +1,7 @@
 package dev.ristoflink.contentcalendar.controller;
 
 import dev.ristoflink.contentcalendar.model.Content;
+import dev.ristoflink.contentcalendar.model.Status;
 import dev.ristoflink.contentcalendar.repository.ContentCollectionRepository;
 import dev.ristoflink.contentcalendar.repository.ContentRepository;
 import jakarta.validation.Valid;
@@ -53,6 +54,16 @@ public class ContentController {
     @DeleteMapping("/{id}") //will respond to a DELETE request at api/content/id | DELETE
     public void delete(@PathVariable Integer id){
         repository.deleteById(id);
+    }
+
+   /* @GetMapping("/filter/{keyword}")
+    public List<Content> findByTitle(@PathVariable String keyword) {
+        return repository.findAllByContains(keyword);
+    }*/
+
+    @GetMapping("/filter/status/{status}")
+    public List<Content> findByStatus(@PathVariable Status status){
+        return repository.listByStatus(status);
     }
 
 }
