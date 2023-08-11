@@ -20,7 +20,8 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@Bean
+	//sample data loading switched to DataLoader class
+	/*@Bean
 	CommandLineRunner commandLineRunner(ContentRepository repository){
 		return args -> {
 			//great place to do some bootstrapping so this is where we insert data to the database
@@ -35,6 +36,6 @@ public class Application {
 
 			repository.save(c);
 		};
-	}
+	}*/
 
 }
